@@ -2,11 +2,13 @@
 
 namespace krok\cabinet\controllers\backend;
 
+use krok\cabinet\interfaces\LoginAsInterface;
 use krok\cabinet\models\Client;
 use krok\cabinet\models\ClientSearch;
 use krok\system\components\backend\Controller;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -36,7 +38,7 @@ class ClientController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = Yii::createObject(ClientSearch::class);
+        $searchModel = new ClientSearch(Yii::$app->getRequest());
         $dataProvider = $searchModel->search();
 
         return $this->render('index', [
@@ -67,7 +69,7 @@ class ClientController extends Controller
      */
     public function actionCreate()
     {
-        $model = Yii::createObject(Client::class);
+        $model = new Client();
         $model->setScenario($model::SCENARIO_CREATE);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -119,15 +121,17 @@ class ClientController extends Controller
      * @param $id
      *
      * @return \yii\web\Response
+     * @throws MethodNotAllowedHttpException
      */
     public function actionLoginAs($id)
     {
         $model = $this->findModel($id);
 
-        /**
-         * todo: Опциональный url
-         */
-        return $this->redirect('/cabinet/auth?access-token=' . $model->accessToken);
+        if ($model instanceof LoginAsInterface) {
+            return $this->redirect($model->loginAs());
+        }
+
+        throw new MethodNotAllowedHttpException('Method not allowed.');
     }
 
     /**
@@ -155,7 +159,7 @@ class ClientController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Yii::createObject(Client::class)::findOne($id)) !== null) {
+        if (($model = Client::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

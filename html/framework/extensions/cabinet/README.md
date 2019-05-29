@@ -43,6 +43,7 @@ frontend
             'as beforeRequest' => [
                 'class' => \yii\filters\AccessControl::class,
                 'except' => [
+                    'auth/index',
                     'login/oauth',
                     'login/login',
                     'login/captcha',
@@ -159,11 +160,26 @@ console
             'class' => \krok\access\AccessController::class,
             'config' => [
                 [
+                    'label' => 'Cabinet',
                     'name' => 'cabinet',
                     'controllers' => [
-                        'client' => ['index', 'create', 'update', 'delete', 'view', 'login-as', 'refresh-token'],
+                        'client' => [
+                            'label' => 'Client',
+                            'actions' => [
+                                'index',
+                                'create',
+                                'update',
+                                'delete',
+                                'view',
+                                'login-as',
+                                'refresh-token',
+                            ],
+                        ],
                         'log' => [
-                            'index',
+                            'label' => 'Log',
+                            'actions' => [
+                                'index',
+                            ],
                         ],
                     ],
                 ],

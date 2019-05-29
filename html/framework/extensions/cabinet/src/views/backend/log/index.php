@@ -1,5 +1,8 @@
 <?php
 
+use krok\cabinet\models\Log;
+use krok\extend\grid\ActiveColumn;
+use krok\extend\grid\DatePickerColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -28,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
                 'id',
                 [
-                    'class' => \krok\extend\grid\ActiveColumn::class,
+                    'class' => ActiveColumn::class,
                     'attribute' => 'clientId',
                     'filter' => $clients,
-                    'value' => function (\krok\cabinet\models\Log $model) {
+                    'value' => function (Log $model) {
                         return ArrayHelper::getValue($model->clientRelation, 'login');
                     },
                     'action' => '/cabinet/client/view',
@@ -39,23 +42,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'status',
                     'filter' => $searchModel::getStatusList(),
-                    'value' => function (\krok\cabinet\models\Log $model) {
+                    'value' => function (Log $model) {
                         return $model->getStatus();
                     },
                 ],
                 [
                     'attribute' => 'ip',
-                    'value' => function (\krok\cabinet\models\Log $model) {
+                    'value' => function (Log $model) {
                         return long2ip($model->ip);
                     },
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attributeFilter' => 'createdAtFrom',
                     'attribute' => 'createdAt',
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attributeFilter' => 'createdAtTo',
                     'attribute' => 'createdAt',
                 ],

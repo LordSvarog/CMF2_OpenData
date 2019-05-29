@@ -2,6 +2,7 @@
 
 namespace krok\cabinet\models;
 
+use krok\cabinet\interfaces\LoginAsInterface;
 use krok\extend\behaviors\GenerateRandomStringBehavior;
 use krok\extend\behaviors\HashBehavior;
 use krok\extend\behaviors\TagDependencyBehavior;
@@ -26,7 +27,7 @@ use yii\web\IdentityInterface;
  * @property Log[] $clientLogsRelation
  * @property OAuth[] $clientOAuthRelation
  */
-class Client extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAttributeInterface
+class Client extends \yii\db\ActiveRecord implements IdentityInterface, LoginAsInterface, BlockedAttributeInterface
 {
     use BlockedAttributeTrait;
 
@@ -216,6 +217,14 @@ class Client extends \yii\db\ActiveRecord implements IdentityInterface, BlockedA
     public function validateAuthKey($authKey)
     {
         return $this->authKey === $authKey;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function loginAs()
+    {
+        return Yii::$app->getUrlManager('frontend')->createUrl(['/cabinet/auth', 'access-token' => $this->accessToken]);
     }
 
     /**

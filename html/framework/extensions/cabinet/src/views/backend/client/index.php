@@ -1,5 +1,8 @@
 <?php
 
+use krok\cabinet\interfaces\LoginAsInterface;
+use krok\extend\grid\BlockedColumn;
+use krok\extend\grid\DatePickerColumn;
 use yii\bootstrap\Html as BootstrapHtml;
 use yii\grid\GridView;
 use yii\helpers\Html;
@@ -37,11 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'template' => '{view} {update} {delete} {login-as}',
                     'buttons' => [
                         'login-as' => function ($url, $model) {
-                            return Html::a(BootstrapHtml::icon('log-in'),
-                                ['login-as', 'id' => $model->id], [
-                                    'title' => 'Войти как',
-                                ]
-                            );
+                            if ($model instanceof LoginAsInterface) {
+                                return Html::a(BootstrapHtml::icon('log-in'),
+                                    ['login-as', 'id' => $model->id], [
+                                        'title' => 'Войти как',
+                                    ]
+                                );
+                            } else {
+                                return false;
+                            }
                         },
                     ],
                 ],
@@ -49,15 +56,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'login',
                 [
-                    'class' => \krok\extend\grid\BlockedColumn::class,
+                    'class' => BlockedColumn::class,
                     'attribute' => 'blocked',
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attribute' => 'createdAt',
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attribute' => 'updatedAt',
                 ],
             ],

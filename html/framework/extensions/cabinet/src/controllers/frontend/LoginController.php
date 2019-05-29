@@ -13,7 +13,9 @@ use krok\cabinet\models\Login;
 use krok\cabinet\models\OAuth;
 use krok\system\components\frontend\Controller;
 use Yii;
+use yii\authclient\AuthAction;
 use yii\authclient\ClientInterface;
+use yii\captcha\CaptchaAction;
 use yii\db\Exception;
 use yii\helpers\ArrayHelper;
 
@@ -38,11 +40,11 @@ class LoginController extends Controller
 
         return [
             'captcha' => [
-                'class' => \yii\captcha\CaptchaAction::class,
+                'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'cmf2' : null,
             ],
             'oauth' => [
-                'class' => \yii\authclient\AuthAction::class,
+                'class' => AuthAction::class,
                 'successCallback' => [$this, 'OAuthCallback'],
                 'successUrl' => $url,
                 'cancelUrl' => $url,
@@ -75,15 +77,14 @@ class LoginController extends Controller
                 }
             } else {
                 // signUp
-                if (isset($attributes['login']) && Yii::createObject(Client::class)::find()->where(['login' => $attributes['login']])->exists()) {
+                if (isset($attributes['login']) && Client::find()->where(['login' => $attributes['login']])->exists()) {
                     Yii::$app->getSession()->addFlash('danger',
                         sprintf('Пользователь %s совпадает с учетной записью %s, но не связан с ней',
                             $attributes['login'], $client->getTitle()));
                 } else {
                     $password = Yii::$app->getSecurity()->generateRandomString(8);
                     /** @var Client $user */
-                    $user = Yii::createObject([
-                        'class' => Client::class,
+                    $user = new Client([
                         'login' => $attributes['login'],
                         'password' => $password,
                         'blocked' => Client::BLOCKED_YES,
@@ -150,9 +151,9 @@ class LoginController extends Controller
             return $this->redirect(Yii::$app->getUser()->getReturnUrl());
         }
 
-        $model = Yii::createObject(Login::class);
+        $model = new Login();
 
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
             return $this->redirect(Yii::$app->getUser()->getReturnUrl());
         }
 
