@@ -1,5 +1,7 @@
 <?php
 
+use krok\grid\BlockedColumn;
+use krok\grid\DatePickerColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
@@ -37,14 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'login',
                 'email:email',
                 [
-                    'class' => \krok\extend\grid\BlockedColumn::class,
+                    'class' => BlockedColumn::class,
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attribute' => 'createdAt',
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attribute' => 'updatedAt',
                 ],
             ],

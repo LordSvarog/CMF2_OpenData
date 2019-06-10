@@ -35,10 +35,11 @@ $config = [
                     'width' => 150,
                 ],
             ],
-            \krok\extend\grid\DatePickerColumn::class => [
+            \yii\grid\DataColumn::class => \krok\grid\DataColumn::class,
+            \krok\grid\DatePickerColumn::class => [
                 'format' => 'datetime',
             ],
-            \krok\extend\grid\DatetimePickerColumn::class => [
+            \krok\grid\DatetimePickerColumn::class => [
                 'dateFormat' => 'Y-m-d H:i',
             ],
             \krok\flatpickr\FlatpickrDatetimeWidget::class => [
@@ -321,7 +322,6 @@ $config = [
                         \krok\paperdashboard\assets\Es6PromiseAutoAsset::class,
                         \krok\paperdashboard\assets\PerfectScrollbarAsset::class,
                         \krok\bootbox\BootBoxAsset::class,
-                        \krok\select2\Select2Asset::class,
                     ],
                 ],
             ],

@@ -1,5 +1,6 @@
 <?php
 
+use krok\grid\DatePickerColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
 
@@ -54,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                 ],
                 [
-                    'class' => \krok\extend\grid\DatePickerColumn::class,
+                    'class' => DatePickerColumn::class,
                     'attribute' => 'createdAt',
                 ],
             ],

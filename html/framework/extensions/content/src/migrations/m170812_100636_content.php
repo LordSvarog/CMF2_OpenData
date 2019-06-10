@@ -1,6 +1,6 @@
 <?php
 
-use krok\extend\interfaces\HiddenAttributeInterface;
+use krok\grid\interfaces\HiddenAttributeInterface;
 use yii\db\Migration;
 
 class m170812_100636_content extends Migration

@@ -6,8 +6,8 @@ use krok\auth\behaviors\RoleBehavior;
 use krok\extend\behaviors\GenerateRandomStringBehavior;
 use krok\extend\behaviors\HashBehavior;
 use krok\extend\behaviors\TimestampBehavior;
-use krok\extend\interfaces\BlockedAttributeInterface;
-use krok\extend\traits\BlockedAttributeTrait;
+use krok\grid\interfaces\BlockedAttributeInterface;
+use krok\grid\traits\BlockedAttributeTrait;
 use Yii;
 use yii\web\IdentityInterface;
 
