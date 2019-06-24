@@ -21,9 +21,6 @@ return \yii\helpers\ArrayHelper::merge([
     ],
     'container' => [
         'singletons' => [
-            \krok\sentry\Sentry::class => [
-                'dsn' => filter_var(env('SENTRY_DSN'), FILTER_VALIDATE_URL) ? env('SENTRY_DSN') : null,
-            ],
             \krok\configure\ConfigureInterface::class => function () {
                 $configurable = [
                     \krok\paperdashboard\Configurable::class,
@@ -260,15 +257,8 @@ return \yii\helpers\ArrayHelper::merge([
                     'enabled' => YII_ENV_PROD,
                 ],
                 'sentry' => [
-                    'class' => \krok\sentry\SentryTarget::class,
-                    'sentry' => [
-                        'class' => \krok\sentry\Sentry::class,
-                        'install' => false,
-                    ],
-                    'levels' => [
-                        'error',
-                        'warning',
-                    ],
+                    'class' => \krok\sentry\log\SentryTarget::class,
+                    'levels' => \yii\log\Logger::LEVEL_ERROR | \yii\log\Logger::LEVEL_WARNING,
                     'except' => [
                         'yii\web\HttpException:404',
                         'yii\web\HttpException:403',
