@@ -40,9 +40,11 @@ class Log extends \yii\db\ActiveRecord
     {
         return [
             'TimestampBehavior' => [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
             ],
-            'IpBehavior' => IpBehavior::className(),
+            'IpBehavior' => [
+                'class' => IpBehavior::class,
+            ],
         ];
     }
 
@@ -66,7 +68,7 @@ class Log extends \yii\db\ActiveRecord
                 ['authId'],
                 'exist',
                 'skipOnError' => true,
-                'targetClass' => Auth::className(),
+                'targetClass' => Auth::class,
                 'targetAttribute' => ['authId' => 'id'],
             ],
         ];
@@ -92,7 +94,7 @@ class Log extends \yii\db\ActiveRecord
      */
     public function getAuth()
     {
-        return $this->hasOne(Auth::className(), ['id' => 'authId']);
+        return $this->hasOne(Auth::class, ['id' => 'authId']);
     }
 
     /**

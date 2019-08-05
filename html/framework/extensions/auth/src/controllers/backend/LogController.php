@@ -18,7 +18,7 @@ class LogController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = Yii::createObject(LogSearch::class);
+        $searchModel = new LogSearch(Yii::$app->getRequest());
         $dataProvider = $searchModel->search();
 
         return $this->render('index', [

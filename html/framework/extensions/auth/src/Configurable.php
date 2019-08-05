@@ -18,18 +18,10 @@ use Yii;
  */
 class Configurable extends \krok\configure\Configurable
 {
-    const SOCIAL_AUTHORIZATION_NO = 0;
-    const SOCIAL_AUTHORIZATION_YES = 1;
-
     const USE_CAPTCHA_NO = 0;
     const USE_CAPTCHA_YES = 1;
 
     const AUTH_TIMEOUT = 1 * 60 * 60;
-
-    /**
-     * @var int
-     */
-    public $socialAuthorization = self::SOCIAL_AUTHORIZATION_YES;
 
     /**
      * @var int
@@ -47,9 +39,9 @@ class Configurable extends \krok\configure\Configurable
     public function rules()
     {
         return [
-            [['socialAuthorization', 'useCaptcha'], 'integer'],
+            [['useCaptcha'], 'integer'],
             [['authTimeout'], 'integer', 'min' => 1, 'max' => Yii::$app->getSession()->timeout / 60],
-            [['socialAuthorization', 'useCaptcha', 'authTimeout'], 'required'],
+            [['useCaptcha', 'authTimeout'], 'required'],
             [
                 ['authTimeout'],
                 function ($attribute) {
@@ -65,7 +57,6 @@ class Configurable extends \krok\configure\Configurable
     public function attributeLabels()
     {
         return [
-            'socialAuthorization' => 'Вход через социальные сети',
             'useCaptcha' => 'Проверочный код',
             'authTimeout' => 'Время сессии',
         ];
@@ -95,12 +86,6 @@ class Configurable extends \krok\configure\Configurable
     public static function attributeTypes(): array
     {
         return [
-            'socialAuthorization' => [
-                'class' => DropDownType::class,
-                'config' => [
-                    'items' => static::getSocialAuthorizationList(),
-                ],
-            ],
             'useCaptcha' => [
                 'class' => DropDownType::class,
                 'config' => [
@@ -125,17 +110,6 @@ class Configurable extends \krok\configure\Configurable
         }
 
         return false;
-    }
-
-    /**
-     * @return array
-     */
-    public static function getSocialAuthorizationList(): array
-    {
-        return [
-            static::SOCIAL_AUTHORIZATION_NO => 'Нет',
-            static::SOCIAL_AUTHORIZATION_YES => 'Да',
-        ];
     }
 
     /**

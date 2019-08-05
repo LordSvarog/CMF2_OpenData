@@ -26,7 +26,6 @@ use yii\web\IdentityInterface;
  *
  * @property string[] $roles
  * @property Log[] $logs
- * @property OAuth[] $socials
  */
 class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAttributeInterface
 {
@@ -57,7 +56,7 @@ class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAtt
     {
         return [
             'HashBehaviorPassword' => [
-                'class' => HashBehavior::className(),
+                'class' => HashBehavior::class,
                 'attribute' => 'password',
                 'scenarios' => [
                     self::SCENARIO_DEFAULT,
@@ -65,7 +64,7 @@ class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAtt
                 ],
             ],
             'GenerateRandomStringBehaviorAuthKey' => [
-                'class' => GenerateRandomStringBehavior::className(),
+                'class' => GenerateRandomStringBehavior::class,
                 'skipUpdateOnClean' => false,
                 'attribute' => 'authKey',
                 'stringLength' => 128,
@@ -75,7 +74,7 @@ class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAtt
                 ],
             ],
             'GenerateRandomStringBehaviorAccessToken' => [
-                'class' => GenerateRandomStringBehavior::className(),
+                'class' => GenerateRandomStringBehavior::class,
                 'skipUpdateOnClean' => false,
                 'attribute' => 'accessToken',
                 'stringLength' => 128,
@@ -85,7 +84,7 @@ class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAtt
                 ],
             ],
             'TimestampBehavior' => [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
             ],
             'RoleBehavior' => [
                 'class' => RoleBehavior::class,
@@ -238,15 +237,7 @@ class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAtt
      */
     public function getLogs()
     {
-        return $this->hasMany(Log::className(), ['authId' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSocials()
-    {
-        return $this->hasMany(OAuth::className(), ['authId' => 'id']);
+        return $this->hasMany(Log::class, ['authId' => 'id']);
     }
 
     /**

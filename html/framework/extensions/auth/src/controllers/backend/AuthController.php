@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = Yii::createObject(AuthSearch::class);
+        $searchModel = new AuthSearch(Yii::$app->getRequest());
         $dataProvider = $searchModel->search();
 
         return $this->render('index', [
@@ -70,14 +70,13 @@ class AuthController extends Controller
     {
         $model = new Auth();
         $model->setScenario(Auth::SCENARIO_CREATE);
-        $roles = ArrayHelper::map(Yii::$app->getAuthManager()->getRoles(), 'name', 'description');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'roles' => $roles,
+                'roles' => $this->getRoles(),
             ]);
         }
     }
@@ -93,14 +92,13 @@ class AuthController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $roles = ArrayHelper::map(Yii::$app->getAuthManager()->getRoles(), 'name', 'description');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'roles' => $roles,
+                'roles' => $this->getRoles(),
             ]);
         }
     }
@@ -150,5 +148,13 @@ class AuthController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @return array
+     */
+    protected function getRoles(): array
+    {
+        return ArrayHelper::map(Yii::$app->getAuthManager()->getRoles(), 'name', 'description');
     }
 }

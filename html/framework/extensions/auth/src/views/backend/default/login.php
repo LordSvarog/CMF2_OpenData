@@ -1,6 +1,5 @@
 <?php
 
-use yii\authclient\widgets\AuthChoice;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -75,19 +74,6 @@ $this->title = 'Авторизация';
                         </div>
                     </div>
                 </div>
-                <?php if ($configure->get(\krok\auth\Configurable::class, 'socialAuthorization')) : ?>
-                    <div class="container-fluid gray-bg">
-                        <div class="card-login__footer row">
-                            <div class="col-lg-12">
-                                <?= AuthChoice::widget([
-                                    'popupMode' => false,
-                                    'autoRender' => true,
-                                    'baseAuthUrl' => ['oauth'],
-                                ]) ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
             </div>
             <?php ActiveForm::end(); ?>
         </div>

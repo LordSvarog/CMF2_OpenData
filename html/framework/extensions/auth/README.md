@@ -79,19 +79,34 @@ console.php
             ],
             'config' => [
                 [
+                    'label' => 'Auth',
                     'name' => 'auth',
                     'controllers' => [
-                        'auth' => [
-                            'index',
-                            'create',
-                            'update',
-                            'delete',
-                            'view',
-                            'refresh-token',
+                        'default' => [
+                            'label' => 'Default',
+                            'actions' => [
+                                'logout',
+                            ],
                         ],
-                        'log' => ['index'],
-                        'social' => ['index'],
-                        'profile' => ['index'],
+                        'auth' => [
+                            'label' => 'Auth',
+                            'actions' => [
+                                'index',
+                                'create',
+                                'update',
+                                'delete',
+                                'view',
+                                'refresh-token',
+                            ],
+                        ],
+                        'log' => [
+                            'label' => 'Log',
+                            'actions' => ['index'],
+                        ],
+                        'profile' => [
+                            'label' => 'Profile',
+                            'actions' => ['index'],
+                        ],
                     ],
                 ],
             ],

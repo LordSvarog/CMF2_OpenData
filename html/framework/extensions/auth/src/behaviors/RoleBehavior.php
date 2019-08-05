@@ -59,8 +59,7 @@ class RoleBehavior extends Behavior
 
     public function afterFind()
     {
-        $this->model->{$this->attribute} = ArrayHelper::map($this->authManager->getRolesByUser($this->model->getId()),
-            'name', 'name');
+        $this->model->{$this->attribute} = $this->getRoles();
     }
 
     public function afterInsert()
@@ -120,6 +119,6 @@ class RoleBehavior extends Behavior
      */
     protected function getRoles(): array
     {
-        return ArrayHelper::getColumn($this->authManager->getRolesByUser($this->model->getId()), 'name');
+        return ArrayHelper::map($this->authManager->getRolesByUser($this->model->getId()), 'name', 'name');
     }
 }
