@@ -11,6 +11,16 @@ return [
         'HTML.Trusted' => true,
         'Filter.YouTube' => true,
     ],
+    'sidebar' => [
+        [
+            'label' => 'Profile',
+            'url' => ['/auth/profile'],
+        ],
+        [
+            'label' => 'Exit',
+            'url' => ['/auth/default/logout'],
+        ],
+    ],
     'menu' => [
         [
             'label' => 'Material',

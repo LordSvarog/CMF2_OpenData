@@ -59,6 +59,12 @@ $config = [
                     'label' => 'Auth',
                     'name' => 'auth',
                     'controllers' => [
+                        'default' => [
+                            'label' => 'Default',
+                            'actions' => [
+                                'logout',
+                            ],
+                        ],
                         'auth' => [
                             'label' => 'Auth',
                             'actions' => [
@@ -72,10 +78,6 @@ $config = [
                         ],
                         'log' => [
                             'label' => 'Log',
-                            'actions' => ['index'],
-                        ],
-                        'social' => [
-                            'label' => 'Social network',
                             'actions' => ['index'],
                         ],
                         'profile' => [

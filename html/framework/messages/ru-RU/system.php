@@ -16,6 +16,11 @@ return [
     'Are you sure you want to delete this item?' => 'Вы уверены, что хотите удалить этот элемент?',
     'Module: {moduleLabel} / {controllerLabel}' => 'Модуль: {moduleLabel} / {controllerLabel}',
     /**
+     * Пользовательское меню
+     */
+    'Profile' => 'Профиль',
+    'Exit' => 'Выход',
+    /**
      * Выпадающие меню
      */
     'Users' => 'Пользователи',
@@ -24,8 +29,6 @@ return [
      * Модули выпадающего меню
      */
     'Auth' => 'Учетные записи',
-    'Social network' => 'Социальные сети',
-    'Profile' => 'Профиль',
     'Log' => 'Журнал',
     'Configure' => 'Настройки',
     'Clear cache' => 'Очистить кэш',
