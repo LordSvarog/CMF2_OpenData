@@ -2,8 +2,12 @@
 
 /* @var $this yii\web\View */
 
+use krok\auth\models\Log;
 use krok\paperdashboard\widgets\analytics\AnalyticsWidget;
 use krok\paperdashboard\widgets\analytics\SpaceCircleChartWidget;
+use krok\paperdashboard\widgets\welcome\WelcomeWidget;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 $this->title = 'Администрирование';
 ?>
@@ -12,21 +16,12 @@ $this->title = 'Администрирование';
         <div class="col-lg-6">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-user-hello">
-                        <div class="card-header">
-                            <div class="card-header__inner">
-                                <i class="card-user-hello__icon"></i>
-                                <h4 class="card-title">Добро пожаловать!</h4>
-                                <p class="category">Вы авторизовались, как <a href="#">webmaster</a></p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <p class="category">
-                                <i class="ti-time"></i>Ваше последнее посещение панели администратора:
-                                <span>23.07.2017 в 17:56</span>
-                            </p>
-                        </div>
-                    </div>
+                    <?= WelcomeWidget::widget([
+                        'login' => ArrayHelper::getValue(Yii::$app->getUser()->getIdentity(), 'login'),
+                        'url' => Url::to(['/auth/profile']),
+                        'lastLoginAt' => Yii::$app->getFormatter()->asDatetime(Log::getLastLoginAt(Yii::$app->getUser()->getIdentity()->getId()),
+                            'dd MMMM YYYY г., HH:mm'),
+                    ]) ?>
                 </div>
             </div>
         </div>
