@@ -18,7 +18,7 @@ Common
 * Имена переменных в camelCase
 * Реляции получают суффикс Relation ( getCreatedByRelation )
 * Наименования модулей как и имена таблиц в ***единственном*** числе!
-* Не использовать before* и after* методы
+* Не использовать before* и after* методы \yii\base\Model
 
 Editor
 ======
