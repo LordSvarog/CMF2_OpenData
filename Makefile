@@ -22,6 +22,9 @@ docker/down: docker-compose.yml
 docker/ps: docker-compose.yml
 	@docker-compose ps
 
+docker/build: docker-compose.yml
+	@docker-compose build
+
 supervisor/start: docker/containers/application/etc/supervisor/application.conf
 	@docker-compose exec -T application supervisorctl --configuration=/etc/supervisor/application.conf start all
 
@@ -49,15 +52,14 @@ composer/update: html/framework/composer.lock
 yii: html/framework/yii
 	$(call do_exec, ${YII_BINARY} ${cmd})
 
-install: composer/install
+yii/up: html/framework/yii
 	$(call do_exec, ${YII_BINARY} migrate/up)
 	$(call do_exec, ${YII_BINARY} access/install)
 	$(call do_exec, ${YII_BINARY} cache/flush-all)
 
-update: composer/update
-	$(call do_exec, ${YII_BINARY} migrate/up)
-	$(call do_exec, ${YII_BINARY} access/install)
-	$(call do_exec, ${YII_BINARY} cache/flush-all)
+install: composer/install yii/up
+
+update: composer/update yii/up
 
 start: docker/up docker/ps
 

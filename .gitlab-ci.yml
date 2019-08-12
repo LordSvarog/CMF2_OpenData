@@ -12,21 +12,16 @@ before_script:
     # Configure docker-compose
     - cp .env.gitlab .env
     # Up
-    - docker-compose build
-    - docker-compose up --detach --remove-orphans
-    - docker-compose ps
+    - make docker/build
+    - make start
 tests:
     stage: tests
     environment: tests
     script:
-        # Composer install
-        - ./docker.sh exec composer --working-dir=framework install
-
         # Configure application
         - cp html/.env.gitlab html/.env.local
 
-        # Try tests
-        - ./docker.sh tests wait
+        - make install
     tags:
         - compose
     only:
@@ -36,16 +31,14 @@ dev:
     environment: dev
     script:
         # Composer install
-        - ./docker.sh exec composer --working-dir=framework install
+        - make composer/install
 
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh supervisor stop all"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make supervisor/stop"
         - sshpass -p $SSH_PASSWORD rsync -riz --links --delete -e "ssh -p $SSH_PORT" --exclude-from="exclude.txt" --include-from="include.txt" . $SSH_USERNAME@$SSH_HOST:$SSH_DIRECTORY
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh mysql-backup"
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec crontab /var/spool/cron/config/crontab"
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec framework/yii migrate/up"
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec framework/yii access/install"
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh exec framework/yii cache/flush-all"
-        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && ./docker.sh supervisor start all"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make mysql/backup"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make docker/exec cmd='crontab /var/spool/cron/config/crontab'"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make yii/up"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make supervisor/start"
     only:
         - master
     tags:
@@ -57,7 +50,7 @@ production:
     environment: production
     script:
         # Composer install
-        - ./docker.sh exec composer --working-dir=framework install --no-dev
+        - make composer/install cmd='--no-dev'
 
         - sshpass -p $SSH_PASSWORD_PROD rsync -riz --links --delete -e "ssh -p $SSH_PORT_PROD" --exclude-from="exclude.txt" --include-from="include.txt" . $SSH_USERNAME_PROD@$SSH_HOST_PROD:$SSH_DIRECTORY_PROD
         - sshpass -p $SSH_PASSWORD_PROD ssh -p $SSH_PORT_PROD $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii migrate/up"
@@ -71,6 +64,6 @@ production:
         - schedules
 after_script:
     # Down
-    - docker-compose down
+    - make stop
     # Cleanse
     - find . -delete
