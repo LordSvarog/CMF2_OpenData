@@ -41,13 +41,23 @@ mysql/drop: docker/scripts/mysql-drop.sh
 	@echo 'Done!'
 
 composer/install: html/framework/composer.json
-	$(call do_exec, composer install --working-dir=framework)
+	$(call do_exec, composer install --working-dir=framework ${cmd})
 
 composer/update: html/framework/composer.lock
-	$(call do_exec, composer update --working-dir=framework)
+	$(call do_exec, composer update --working-dir=framework ${cmd})
 
 yii: html/framework/yii
 	$(call do_exec, ${YII_BINARY} ${cmd})
+
+install: composer/install
+	$(call do_exec, ${YII_BINARY} migrate/up)
+	$(call do_exec, ${YII_BINARY} access/install)
+	$(call do_exec, ${YII_BINARY} cache/flush-all)
+
+update: composer/update
+	$(call do_exec, ${YII_BINARY} migrate/up)
+	$(call do_exec, ${YII_BINARY} access/install)
+	$(call do_exec, ${YII_BINARY} cache/flush-all)
 
 start: docker/up docker/ps
 
