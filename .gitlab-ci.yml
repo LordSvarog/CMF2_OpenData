@@ -33,12 +33,12 @@ dev:
         # Composer install
         - make composer/install
 
-        # - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make supervisor/stop"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make supervisor/stop"
         - sshpass -p $SSH_PASSWORD rsync -riz --links --delete -e "ssh -p $SSH_PORT" --exclude-from="exclude.txt" --include-from="include.txt" . $SSH_USERNAME@$SSH_HOST:$SSH_DIRECTORY
         - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make mysql/backup"
         - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make docker/exec cmd='crontab /var/spool/cron/config/crontab'"
         - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make yii/up"
-        # - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make supervisor/start"
+        - sshpass -p $SSH_PASSWORD ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $SSH_DIRECTORY && make supervisor/start"
     only:
         - master
     tags:
