@@ -5,12 +5,13 @@ PHP_BINARY := php
 YII_BINARY := ${PHP_BINARY} ${YII}
 
 .DEFAULT_GOAL := help
+.PHONY: docker docker/up docker/down docker/ps docker/build supervisor supervisor/start supervisor/stop mysql/backup mysql/restore mysql/drop composer composer/install composer/update yii yii/up install update start stop
 
 define do_exec
     @docker-compose exec -T --user="${APACHE_RUN_USER}:${APACHE_RUN_GROUP}" application ${1}
 endef
 
-docker/exec: docker-compose.yml
+docker: docker-compose.yml
 	$(call do_exec, ${cmd})
 
 docker/up: docker-compose.yml
@@ -24,6 +25,9 @@ docker/ps: docker-compose.yml
 
 docker/build: docker-compose.yml
 	@docker-compose build
+
+supervisor: docker/containers/application/etc/supervisor/application.conf
+	@docker-compose exec -T application supervisorctl --configuration=/etc/supervisor/application.conf ${cmd}
 
 supervisor/start: docker/containers/application/etc/supervisor/application.conf
 	@docker-compose exec -T application supervisorctl --configuration=/etc/supervisor/application.conf start all
@@ -42,6 +46,9 @@ mysql/restore: docker/scripts/mysql-restore.sh
 mysql/drop: docker/scripts/mysql-drop.sh
 	$(shell docker/scripts/mysql-drop.sh)
 	@echo 'Done!'
+
+composer: html/framework/composer.json
+	$(call do_exec, composer --working-dir=framework ${cmd})
 
 composer/install: html/framework/composer.json
 	$(call do_exec, composer install --working-dir=framework ${cmd})
