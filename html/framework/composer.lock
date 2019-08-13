@@ -3227,11 +3227,11 @@
         },
         {
             "name": "yii2-developer/yii2-grid",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-grid.git",
-                "reference": "e279f4b1055b45ae208f6d74871abb42a812d765"
+                "reference": "54bcaad86f6de00b655c9314c7411dbe16941b81"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -3260,7 +3260,7 @@
                 "grid",
                 "yii2"
             ],
-            "time": "2019-06-10T07:14:37+00:00"
+            "time": "2019-08-13T06:54:40+00:00"
         },
         {
             "name": "yii2-developer/yii2-language",
