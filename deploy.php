@@ -7,29 +7,6 @@ use Deployer\Task\Context;
 require 'recipe/rsync.php';
 require 'recipe/cmf2.php';
 
-desc('Prepare release. Clean up unfinished releases and prepare next release');
-task('deploy:release', function () {
-    cd('{{deploy_path}}');
-
-    $previousReleaseExist = test('[ -h release ]');
-
-    if ($previousReleaseExist) {
-        run('rm release');
-    }
-
-    $releasePath = parse("{{deploy_path}}/releases/{{release_name}}");
-
-    $date = run('date +"%Y%m%d%H%M%S"');
-
-    run("echo '$date,{{release_name}}' > .dep/releases");
-
-    $releaseExist = test("[ ! -d $releasePath ]");
-    if ($releaseExist) {
-        run("mkdir $releasePath");
-    }
-    run("{{bin/symlink}} $releasePath {{deploy_path}}/release");
-});
-
 // Configuration
 
 if (!has('ssh_directory')) {
