@@ -42,9 +42,6 @@ host(get('ssh_host'))
     ->sshFlags([
         '-p' => get('ssh_port', 22),
     ])
-    ->sshOptions([
-        'StrictHostKeyChecking' => 'no',
-    ])
     ->set('deploy_path', '{{ssh_directory}}')
     ->set('rsync_src', '.')
     ->set('rsync_dest', '{{release_path}}');
