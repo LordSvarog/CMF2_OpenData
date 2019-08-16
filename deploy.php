@@ -35,8 +35,9 @@ set('rsync', [
     'timeout' => 3600,
 ]);
 
-set('shared_dirs', [
-    'html/storage',
+set('shared_files', [
+    '.env',
+    'html/.env.local',
 ]);
 
 // Hosts
