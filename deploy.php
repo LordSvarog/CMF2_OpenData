@@ -23,10 +23,9 @@ task('deploy:release', function () {
 
     run("echo '$date,{{release_name}}' > .dep/releases");
 
-    $releaseExist = test("[ -h $releasePath ]");
-    if (!$releaseExist) {
-        writeln("mkdir $releasePath");
-        run("mkdir $releasePath");#
+    $releaseExist = test("[ ! -d $releasePath ]");
+    if ($releaseExist) {
+        run("mkdir $releasePath");
     }
     run("{{bin/symlink}} $releasePath {{deploy_path}}/release");
 });
