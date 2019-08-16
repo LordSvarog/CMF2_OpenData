@@ -26,9 +26,9 @@ tests:
         - compose
     only:
         - schedules
-dev:
+develop:
     stage: deploy
-    environment: dev
+    environment: develop
     script:
         # Composer install
         - make composer/install
