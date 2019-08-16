@@ -36,10 +36,10 @@ develop:
         # Deploy
         - dep deploy:develop
     variables:
-        SSH_DIRECTORY: $SSH_DIRECTORY
-        SSH_HOST: $SSH_HOST
-        SSH_PORT: $SSH_PORT
-        SSH_USERNAME: $SSH_USERNAME
+        SSH_DIRECTORY: "$SSH_DIRECTORY"
+        SSH_HOST: "$SSH_HOST"
+        SSH_PORT: "$SSH_PORT"
+        SSH_USERNAME: "$SSH_USERNAME"
     only:
         - master
     tags:
