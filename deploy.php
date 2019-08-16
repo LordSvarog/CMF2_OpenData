@@ -35,6 +35,10 @@ set('rsync', [
     'timeout' => 3600,
 ]);
 
+set('shared_dirs', [
+    'html/storage',
+]);
+
 // Hosts
 
 host(get('ssh_host'))
@@ -73,6 +77,7 @@ task('deploy:develop', function () {
     invoke('deploy:lock');
     invoke('deploy:release');
     invoke('rsync');
+    invoke('deploy:shared');
     invoke('deploy:symlink');
     invoke('deploy:unlock');
     invoke('success');
@@ -86,6 +91,7 @@ task('deploy:production', function () {
     invoke('deploy:lock');
     invoke('deploy:release');
     invoke('rsync');
+    invoke('deploy:shared');
     invoke('deploy:symlink');
     invoke('deploy:unlock');
     invoke('success');
