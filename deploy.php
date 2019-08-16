@@ -126,7 +126,7 @@ task('deploy:application', function () {
     'Installing application'
 );
 
-task('deploy:prepare', function () {
+task('deploy:environment', function () {
     invoke('deploy:vendors');
     invoke('deploy:prepare');
     invoke('deploy:lock');
