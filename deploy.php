@@ -96,6 +96,18 @@ task('deploy:vendors', function () {
     'Installing vendors'
 );
 
+task('deploy:start', function () {
+    run('cd {{current_path}} && make start');
+})->desc(
+    'Docker start'
+);
+
+task('deploy:stop', function () {
+    run('cd {{current_path}} && make stop');
+})->desc(
+    'Docker stop'
+);
+
 task('deploy:supervisor:start', function () {
     run('cd {{current_path}} && make supervisor/start');
 })->desc(
@@ -135,6 +147,7 @@ task('deploy:environment', function () {
     invoke('deploy:shared');
     invoke('deploy:symlink');
     invoke('deploy:unlock');
+    invoke('deploy:start');
     invoke('success');
 })->desc(
     'Prepare deploy your project'
