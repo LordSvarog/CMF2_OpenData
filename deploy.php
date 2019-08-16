@@ -72,14 +72,49 @@ task('deploy:vendors', function () {
     'Installing vendors'
 );
 
+task('deploy:supervisor:start', function () {
+    run('make supervisor/start');
+})->desc(
+    'Supervisor start'
+);
+
+task('deploy:supervisor:stop', function () {
+    run('make supervisor/stop');
+})->desc(
+    'Supervisor stop'
+);
+
+task('deploy:mysql:backup', function () {
+    run('make mysql/backup');
+})->desc(
+    'MySQL backup'
+);
+
+task('deploy:cron', function () {
+    run('make docker cmd="crontab /var/spool/cron/config/crontab"');
+})->desc(
+    'Installing cron'
+);
+
+task('deploy:application', function () {
+    run('make yii/up');
+})->desc(
+    'Installing application'
+);
+
 task('deploy:develop', function () {
     invoke('deploy:vendors');
     invoke('deploy:prepare');
     invoke('deploy:lock');
     invoke('deploy:release');
+    invoke('deploy:supervisor:stop');
     invoke('rsync');
+    invoke('deploy:mysql:backup');
+    invoke('deploy:cron');
+    invoke('deploy:application');
     invoke('deploy:shared');
     invoke('deploy:symlink');
+    invoke('deploy:supervisor:start');
     invoke('deploy:unlock');
     invoke('success');
 })->desc(
