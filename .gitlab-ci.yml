@@ -6,6 +6,9 @@ before_script:
     # Software
     - docker version
     - docker-compose version
+    # Configure ssh
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     # Configure docker-compose
     - cp .env.gitlab .env
     # Up
@@ -32,6 +35,9 @@ develop:
 
         # Composer install
         - make composer/install
+
+        # Env
+        - echo $SSH_DIRECTORY $SSH_HOST $SSH_PORT $SSH_USERNAME $SSH_PASSWORD
 
         # Deploy
         - sshpass -p $SSH_PASSWORD dep deploy:develop -vvv
