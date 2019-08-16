@@ -126,6 +126,20 @@ task('deploy:application', function () {
     'Installing application'
 );
 
+task('deploy:prepare', function () {
+    invoke('deploy:vendors');
+    invoke('deploy:prepare');
+    invoke('deploy:lock');
+    invoke('deploy:release');
+    invoke('rsync');
+    invoke('deploy:shared');
+    invoke('deploy:symlink');
+    invoke('deploy:unlock');
+    invoke('success');
+})->desc(
+    'Prepare deploy your project'
+);
+
 task('deploy:develop', function () {
     invoke('deploy:vendors');
     invoke('deploy:prepare');
