@@ -32,7 +32,7 @@ develop:
     environment: develop
     script:
         # Composer self install
-        - composer global require yii2-developer/recipes ~0.0.2
+        - composer global require yii2-developer/recipes ~0.0.5
 
         # Deploy
         - sshpass -p $SSH_PASSWORD dep deploy:multiplex
