@@ -26,7 +26,7 @@ task('deploy:release', function () {
     $releaseExist = test("[ -h $releasePath ]");
     if (!$releaseExist) {
         writeln("mkdir $releasePath");
-        run("mkdir $releasePath");
+        run("mkdir $releasePath");#
     }
     run("{{bin/symlink}} $releasePath {{deploy_path}}/release");
 });
