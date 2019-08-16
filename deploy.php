@@ -2,6 +2,8 @@
 
 namespace Deployer;
 
+use Deployer\Task\Context;
+
 require 'recipe/rsync.php';
 require 'recipe/cmf2.php';
 
@@ -46,6 +48,17 @@ host(get('ssh_host'))
     ->set('rsync_src', '.')
     ->set('rsync_dest', '{{release_path}}');
 
+// Tasks
+
+task('deploy:multiplex', function () {
+    $host = Context::get()->getHost();
+
+    if ($host->isMultiplexing() === null ? get('ssh_multiplexing', false) : $host->isMultiplexing()) {
+        writeln('ssh multiplexing initialization');
+        run('ls -la');
+    }
+});
+
 task('deploy:develop', function () {
     invoke('deploy:prepare');
     invoke('deploy:lock');
@@ -70,5 +83,5 @@ task('deploy:production', function () {
     'Deploy your project'
 );
 
-// [Optional] If deploy fails automatically unlock.
+// If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
