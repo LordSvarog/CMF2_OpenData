@@ -57,9 +57,18 @@ task('deploy:multiplex', function () {
         writeln('ssh multiplexing initialization');
         run('ls -la');
     }
-});
+})->desc(
+    'Initialize multiplexing'
+);
+
+task('deploy:vendors', function () {
+    runLocally('make composer/install');
+})->desc(
+    'Installing vendors'
+);
 
 task('deploy:develop', function () {
+    invoke('deploy:vendors');
     invoke('deploy:prepare');
     invoke('deploy:lock');
     invoke('deploy:release');
@@ -72,6 +81,7 @@ task('deploy:develop', function () {
 );
 
 task('deploy:production', function () {
+    invoke('deploy:vendors');
     invoke('deploy:prepare');
     invoke('deploy:lock');
     invoke('deploy:release');

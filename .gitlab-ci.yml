@@ -33,12 +33,9 @@ develop:
         # Composer self install
         - composer global require yii2-developer/recipes ~0.0.1 # todo
 
-        # Composer install
-        - make composer/install
-
         # Deploy
         - sshpass -p $SSH_PASSWORD dep deploy:multiplex
-        - sshpass -p $SSH_PASSWORD dep deploy:develop -vv
+        - sshpass -p $SSH_PASSWORD dep deploy:develop
     variables:
         SSH_DIRECTORY: "$SSH_DIRECTORY"
         SSH_HOST: "$SSH_HOST"
