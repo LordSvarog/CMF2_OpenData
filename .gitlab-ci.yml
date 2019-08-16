@@ -34,7 +34,7 @@ develop:
         - make composer/install
 
         # Deploy
-        - dep deploy:develop
+        - dep deploy:develop -vvv
     variables:
         SSH_DIRECTORY: "$SSH_DIRECTORY"
         SSH_HOST: "$SSH_HOST"
