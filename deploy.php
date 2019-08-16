@@ -73,31 +73,31 @@ task('deploy:vendors', function () {
 );
 
 task('deploy:supervisor:start', function () {
-    run('make supervisor/start');
+    run('cd {{current_path}} && make supervisor/start');
 })->desc(
     'Supervisor start'
 );
 
 task('deploy:supervisor:stop', function () {
-    run('make supervisor/stop');
+    run('cd {{current_path}} && make supervisor/stop');
 })->desc(
     'Supervisor stop'
 );
 
 task('deploy:mysql:backup', function () {
-    run('make mysql/backup');
+    run('cd {{current_path}} && make mysql/backup');
 })->desc(
     'MySQL backup'
 );
 
 task('deploy:cron', function () {
-    run('make docker cmd="crontab /var/spool/cron/config/crontab"');
+    run('cd {{current_path}} && make docker cmd="crontab /var/spool/cron/config/crontab"');
 })->desc(
     'Installing cron'
 );
 
 task('deploy:application', function () {
-    run('make yii/up');
+    run('cd {{current_path}} && make yii/up');
 })->desc(
     'Installing application'
 );
