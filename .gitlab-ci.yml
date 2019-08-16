@@ -34,7 +34,7 @@ develop:
         - make composer/install
 
         # Deploy
-        - sshpass -p "$SSH_PASSWORD" dep deploy:develop -vvv
+        - sshpass -p $SSH_PASSWORD dep deploy:develop -vvv
     variables:
         SSH_DIRECTORY: "$SSH_DIRECTORY"
         SSH_HOST: "$SSH_HOST"
