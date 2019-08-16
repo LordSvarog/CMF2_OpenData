@@ -111,13 +111,13 @@ html/.env
 Запускаем контейнеры:
 
 ```
-make start
+make docker/up
 ```
 
 Выключаем контейнеры:
 
 ```
-make stop
+make docker/down
 ```
 
 Если контейнеров в системе нет они будут загружены ( ~2 GB ) .
@@ -134,6 +134,12 @@ make docker/ps
 
 ```
 make install
+```
+
+Обновление системы
+
+```
+make update
 ```
 
 Администрирование

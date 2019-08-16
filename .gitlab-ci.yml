@@ -13,7 +13,8 @@ before_script:
     - cp .env.gitlab .env
     # Up
     - make docker/build
-    - make start
+    - make docker/up
+    - make docker/ps
 tests:
     stage: tests
     environment: tests
@@ -31,7 +32,7 @@ develop:
     environment: develop
     script:
         # Composer self install
-        - composer global require yii2-developer/recipes ~0.0.1 # todo
+        - composer global require yii2-developer/recipes ~0.0.2
 
         # Deploy
         - sshpass -p $SSH_PASSWORD dep deploy:multiplex
@@ -52,13 +53,7 @@ production:
     stage: deploy
     environment: production
     script:
-        # Composer install
-        - make composer/install cmd='--no-dev'
-
-        - sshpass -p $SSH_PASSWORD_PROD rsync -riz --links --delete -e "ssh -p $SSH_PORT_PROD" --exclude-from="exclude.txt" --include-from="include.txt" . $SSH_USERNAME_PROD@$SSH_HOST_PROD:$SSH_DIRECTORY_PROD
-        - sshpass -p $SSH_PASSWORD_PROD ssh -p $SSH_PORT_PROD $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii migrate/up"
-        - sshpass -p $SSH_PASSWORD_PROD ssh -p $SSH_PORT_PROD $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii access/install"
-        - sshpass -p $SSH_PASSWORD_PROD ssh -p $SSH_PORT_PROD $SSH_USERNAME_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_PROD && /usr/local/php71/bin/php html/framework/yii cache/flush-all"
+        - echo 'TODO'
     only:
         - production
     tags:
@@ -67,6 +62,6 @@ production:
         - schedules
 after_script:
     # Down
-    - make stop
+    - make docker/down
     # Cleanse
     - find . -delete

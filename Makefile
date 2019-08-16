@@ -56,18 +56,17 @@ composer/install: html/framework/composer.json
 composer/update: html/framework/composer.lock
 	$(call do_exec, composer update --working-dir=framework ${cmd})
 
+cron/install: docker/containers/application/var/spool/cron/config/crontab
+	$(call do_exec, crontab /var/spool/cron/config/crontab)
+
 yii: html/framework/yii
 	$(call do_exec, ${YII_BINARY} ${cmd})
 
-yii/up: html/framework/yii
+yii/install: html/framework/yii
 	$(call do_exec, ${YII_BINARY} migrate/up)
 	$(call do_exec, ${YII_BINARY} access/install)
 	$(call do_exec, ${YII_BINARY} cache/flush-all)
 
-install: composer/install yii/up
+install: composer/install yii/install
 
-update: composer/update yii/up
-
-start: docker/up docker/ps
-
-stop: docker/ps docker/down
+update: composer/update yii/install
