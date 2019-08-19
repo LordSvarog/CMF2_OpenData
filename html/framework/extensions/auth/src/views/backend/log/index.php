@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filter' => $searchModel::getAuthList(),
                     'value' => function ($model) {
                         /** @var krok\auth\models\Log $model */
-                        if ($model->auth) {
-                            return Html::a($model->auth->login, ['auth/view', 'id' => $model->auth->id],
+                        if ($model->authRelation) {
+                            return Html::a($model->authRelation->login, ['auth/view', 'id' => $model->authRelation->id],
                                 ['target' => '_blank']);
                         } else {
                             return null;

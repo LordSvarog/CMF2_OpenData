@@ -125,13 +125,17 @@ class Log extends \yii\db\ActiveRecord
         static $list = null;
 
         if ($list === null) {
-            $models = Log::find()->joinWith('auth')->where(['IS NOT', 'authId', null])->distinct()->asArray()->all();
+            $models = Log::find()->joinWith('authRelation')->where([
+                'IS NOT',
+                'authId',
+                null,
+            ])->distinct()->asArray()->all();
 
             $list = ArrayHelper::map($models,
                 function (array $model) {
-                    return ArrayHelper::getValue($model, ['auth', 'id']);
+                    return ArrayHelper::getValue($model, ['authRelation', 'id']);
                 }, function (array $model) {
-                    return ArrayHelper::getValue($model, ['auth', 'login']);
+                    return ArrayHelper::getValue($model, ['authRelation', 'login']);
                 });
         }
 

@@ -38,7 +38,7 @@ class LogSearch extends Log
      */
     public function search($params)
     {
-        $query = Log::find()->joinWith('auth')->orderBy(['createdAt' => SORT_DESC]);
+        $query = Log::find()->joinWith('authRelation')->orderBy(['createdAt' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
