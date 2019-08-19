@@ -118,31 +118,6 @@ class Log extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return array
-     */
-    public static function getAuthList()
-    {
-        static $list = null;
-
-        if ($list === null) {
-            $models = Log::find()->joinWith('authRelation')->where([
-                'IS NOT',
-                'authId',
-                null,
-            ])->distinct()->asArray()->all();
-
-            $list = ArrayHelper::map($models,
-                function (array $model) {
-                    return ArrayHelper::getValue($model, ['authRelation', 'id']);
-                }, function (array $model) {
-                    return ArrayHelper::getValue($model, ['authRelation', 'login']);
-                });
-        }
-
-        return $list;
-    }
-
-    /**
      * @param null|string $authId
      *
      * @return DateTime

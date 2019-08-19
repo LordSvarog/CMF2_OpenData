@@ -1,5 +1,6 @@
 <?php
 
+use krok\auth\grid\AuthorizedListColumn;
 use krok\grid\DatePickerColumn;
 use yii\grid\GridView;
 use yii\helpers\Html;
@@ -26,18 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'columns' => [
                 'id',
                 [
+                    'class' => AuthorizedListColumn::class,
                     'attribute' => 'authId',
-                    'filter' => $searchModel::getAuthList(),
-                    'value' => function ($model) {
-                        /** @var krok\auth\models\Log $model */
-                        if ($model->authRelation) {
-                            return Html::a($model->authRelation->login, ['auth/view', 'id' => $model->authRelation->id],
-                                ['target' => '_blank']);
-                        } else {
-                            return null;
-                        }
-                    },
-                    'format' => 'raw',
                 ],
                 [
                     'attribute' => 'status',

@@ -31,7 +31,8 @@
         "yii2-developer/yii2-extend": "~1.0.0",
         "yii2-developer/yii2-system": "~1.0.0",
         "yii2-developer/yii2-password-eye": "~0.0.1",
-        "yii2-developer/yii2-configure": "~1.2.0"
+        "yii2-developer/yii2-configure": "~1.2.0",
+        "yii2-developer/yii2-grid": "~0.0.1"
     },
     "autoload": {
         "psr-4": {
