@@ -2,7 +2,6 @@
 
 namespace krok\auth\models;
 
-use DateTime;
 use krok\extend\behaviors\IpBehavior;
 use krok\extend\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
@@ -115,23 +114,6 @@ class Log extends \yii\db\ActiveRecord
     public function getStatus()
     {
         return ArrayHelper::getValue(static::getStatusList(), $this->status);
-    }
-
-    /**
-     * @param null|string $authId
-     *
-     * @return DateTime
-     */
-    public static function getLastLoginAt(?string $authId): DateTime
-    {
-        $last = static::find()->where([
-            '[[authId]]' => $authId,
-            '[[status]]' => self::STATUS_LOGGED,
-        ])->orderBy([
-            '[[createdAt]]' => SORT_DESC,
-        ])->limit(2)->asArray()->all();
-
-        return new DateTime($last['1']['createdAt'] ?? $last['0']['createdAt'] ?? 'now');
     }
 
     /**

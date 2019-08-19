@@ -2,12 +2,10 @@
 
 /* @var $this yii\web\View */
 
-use krok\auth\models\Log;
 use krok\paperdashboard\widgets\analytics\AnalyticsWidget;
 use krok\paperdashboard\widgets\analytics\SpaceCircleChartWidget;
+use krok\paperdashboard\widgets\welcome\WelcomeProvider;
 use krok\paperdashboard\widgets\welcome\WelcomeWidget;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 
 $this->title = 'Администрирование';
 ?>
@@ -17,10 +15,7 @@ $this->title = 'Администрирование';
             <div class="row">
                 <div class="col-md-12">
                     <?= WelcomeWidget::widget([
-                        'login' => ArrayHelper::getValue(Yii::$app->getUser()->getIdentity(), 'login'),
-                        'url' => Url::to(['/auth/profile']),
-                        'lastLoginAt' => Yii::$app->getFormatter()->asDatetime(Log::getLastLoginAt(Yii::$app->getUser()->getIdentity()->getId()),
-                            'dd MMMM YYYY г., HH:mm'),
+                        'provider' => WelcomeProvider::class,
                     ]) ?>
                 </div>
             </div>

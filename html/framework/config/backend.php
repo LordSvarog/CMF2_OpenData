@@ -234,6 +234,7 @@ $config = [
 
                 return $compressors;
             },
+            \krok\paperdashboard\widgets\welcome\WelcomeProvider::class => \krok\auth\WelcomeProvider::class,
         ],
     ],
     'modules' => [
