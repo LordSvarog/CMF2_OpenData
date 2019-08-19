@@ -85,7 +85,7 @@ class RoleBehavior extends Behavior
 
     public function afterDelete()
     {
-        $this->authManager->revokeAll($this->model->getId());
+        $this->revokeAll($this->model->getId());
     }
 
     /**
@@ -112,6 +112,14 @@ class RoleBehavior extends Behavior
                 $this->authManager->revoke($this->authManager->getRole($role), $this->model->getId());
             }
         }
+    }
+
+    /**
+     * @param string $userId
+     */
+    protected function revokeAll(string $userId)
+    {
+        $this->authManager->revokeAll($userId);
     }
 
     /**

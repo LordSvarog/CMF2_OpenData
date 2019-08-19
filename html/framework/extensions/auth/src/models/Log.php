@@ -17,7 +17,7 @@ use yii\helpers\ArrayHelper;
  * @property string $createdAt
  * @property string $updatedAt
  *
- * @property Auth $auth
+ * @property Auth $authRelation
  */
 class Log extends \yii\db\ActiveRecord
 {
@@ -93,7 +93,7 @@ class Log extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAuth()
+    public function getAuthRelation()
     {
         return $this->hasOne(Auth::class, ['id' => 'authId']);
     }

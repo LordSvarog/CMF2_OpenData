@@ -18,8 +18,8 @@ class LogController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new LogSearch(Yii::$app->getRequest());
-        $dataProvider = $searchModel->search();
+        $searchModel = new LogSearch();
+        $dataProvider = $searchModel->search(Yii::$app->getRequest()->post());
 
         return $this->render('index', [
             'searchModel' => $searchModel,

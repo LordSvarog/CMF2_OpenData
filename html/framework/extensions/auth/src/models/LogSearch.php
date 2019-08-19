@@ -4,30 +4,12 @@ namespace krok\auth\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use yii\web\Request;
 
 /**
  * LogSearch represents the model behind the search form about `krok\auth\models\Log`.
  */
 class LogSearch extends Log
 {
-    /**
-     * @var Request
-     */
-    protected $request;
-
-    /**
-     * LogSearch constructor.
-     *
-     * @param Request $request
-     * @param array $config
-     */
-    public function __construct(Request $request, array $config = [])
-    {
-        $this->request = $request;
-        parent::__construct($config);
-    }
-
     /**
      * @inheritdoc
      */
@@ -50,9 +32,11 @@ class LogSearch extends Log
     /**
      * Creates data provider instance with search query applied
      *
+     * @param array $params
+     *
      * @return ActiveDataProvider
      */
-    public function search()
+    public function search($params)
     {
         $query = Log::find()->joinWith('auth')->orderBy(['createdAt' => SORT_DESC]);
 
@@ -60,7 +44,7 @@ class LogSearch extends Log
             'query' => $query,
         ]);
 
-        $this->load($this->request->getQueryParams());
+        $this->load($params);
 
         if (!$this->validate()) {
             return $dataProvider;
@@ -71,7 +55,9 @@ class LogSearch extends Log
             'authId' => $this->authId,
             'status' => $this->status,
             'ip' => $this->ip ? ip2long($this->ip) : null,
-        ])->andFilterWhere(['like', 'createdAt', $this->createdAt]);
+        ]);
+
+        $query->andFilterWhere(['like', 'createdAt', $this->createdAt]);
 
         return $dataProvider;
     }

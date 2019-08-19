@@ -47,12 +47,16 @@ class DefaultController extends Controller
      */
     public function actions()
     {
-        return [
-            'captcha' => [
-                'class' => CaptchaAction::class,
-                'fixedVerifyCode' => YII_ENV_TEST ? 'cmf2' : null,
-            ],
-        ];
+        if ($this->configurable->useCaptcha) {
+            return [
+                'captcha' => [
+                    'class' => CaptchaAction::class,
+                    'fixedVerifyCode' => YII_ENV_TEST ? 'cmf2' : null,
+                ],
+            ];
+        } else {
+            return parent::actions();
+        }
     }
 
     /**

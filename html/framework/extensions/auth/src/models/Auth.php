@@ -25,7 +25,7 @@ use yii\web\IdentityInterface;
  * @property string $updatedAt
  *
  * @property string[] $roles
- * @property Log[] $logs
+ * @property Log[] $logsRelation
  */
 class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAttributeInterface
 {
@@ -235,7 +235,7 @@ class Auth extends \yii\db\ActiveRecord implements IdentityInterface, BlockedAtt
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLogs()
+    public function getLogsRelation()
     {
         return $this->hasMany(Log::class, ['authId' => 'id']);
     }
