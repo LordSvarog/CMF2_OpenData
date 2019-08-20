@@ -21,7 +21,7 @@ class SurveyWidget extends Widget
     /**
      * @var string
      */
-    public $template = 'survey';
+    public $template = 'survey.php';
 
     /**
      * @var Survey
