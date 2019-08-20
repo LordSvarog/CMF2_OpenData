@@ -21,7 +21,7 @@ class SurveyWidget extends Widget
     /**
      * @var string
      */
-    public $view = 'survey';
+    public $template = 'survey';
 
     /**
      * @var Survey
@@ -33,7 +33,7 @@ class SurveyWidget extends Widget
      */
     public function run()
     {
-        return $this->render($this->view, [
+        return $this->render($this->template, [
             'model' => $this->model,
         ]);
     }
