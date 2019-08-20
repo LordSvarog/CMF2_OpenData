@@ -127,6 +127,6 @@ class RoleBehavior extends Behavior
      */
     protected function getRoles(): array
     {
-        return ArrayHelper::map($this->authManager->getRolesByUser($this->model->getId()), 'name', 'name');
+        return ArrayHelper::getColumn($this->authManager->getRolesByUser($this->model->getId()), 'name');
     }
 }

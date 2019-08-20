@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model krok\auth\models\Auth */
+/* @var $roles [] */
 
 $this->title = $model->login;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('system', 'Auth'), 'url' => ['index']];
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="panel-body">
                     <div class="list-group">
-                        <?php foreach ($model->roles as $role) : ?>
+                        <?php foreach (array_intersect_key($roles, $model->roles) as $role) : ?>
                             <a class="list-group-item">
                                 <?= $role ?>
                             </a>

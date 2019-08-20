@@ -57,6 +57,7 @@ class AuthController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'roles' => $this->getRoles(),
         ]);
     }
 
