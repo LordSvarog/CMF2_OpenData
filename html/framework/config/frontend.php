@@ -4,13 +4,6 @@ $config = [
     'id' => 'web',
     'defaultRoute' => 'content/default/index',
     'on beforeRequest' => [\krok\catchAll\CatchAllHandler::class, 'handle'],
-    'on afterRequest' => function () {
-        /**
-         * see. https://content-security-policy.com/
-         */
-        // Yii::$app->getResponse()->getHeaders()->add('Content-Security-Policy',
-        //    'default-src \'none\'; script-src \'self\' \'unsafe-inline\'; connect-src \'self\'; child-src \'self\'; img-src * data:; style-src * \'unsafe-inline\'; font-src *;');
-    },
     'bootstrap' => [
         \krok\reverseProxy\Bootstrap::class,
     ],

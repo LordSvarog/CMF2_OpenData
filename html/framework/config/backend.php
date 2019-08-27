@@ -12,13 +12,6 @@ $config = [
             'auth/default/captcha',
         ],
     ],
-    'on afterRequest' => function () {
-        /**
-         * see. https://content-security-policy.com/
-         */
-        // Yii::$app->getResponse()->getHeaders()->add('Content-Security-Policy',
-        //    'default-src \'none\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\'; connect-src \'self\' speller.yandex.net; child-src \'self\'; img-src * data: blob:; style-src * \'unsafe-inline\'; font-src * data:;');
-    },
     'bootstrap' => [
         \krok\reverseProxy\Bootstrap::class,
     ],
