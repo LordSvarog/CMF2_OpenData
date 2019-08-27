@@ -11,7 +11,10 @@ return \yii\helpers\ArrayHelper::merge([
     'timeZone' => 'UTC',
     'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        \krok\reverseProxy\Bootstrap::class,
+    ],
     'aliases' => [
         '@root' => dirname(dirname(__DIR__)),
         '@bower' => '@vendor/bower-asset',
@@ -31,6 +34,7 @@ return \yii\helpers\ArrayHelper::merge([
                     \krok\meta\MetaConfigurable::class,
                     \krok\meta\OpenGraphConfigurable::class,
                     \krok\catchAll\Configurable::class,
+                    \krok\reverseProxy\Configurable::class,
                 ];
 
                 /** @var \krok\configure\serializers\SerializerInterface $serializer */
