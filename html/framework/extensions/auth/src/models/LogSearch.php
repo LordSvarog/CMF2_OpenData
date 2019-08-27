@@ -51,13 +51,13 @@ class LogSearch extends Log
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'authId' => $this->authId,
-            'status' => $this->status,
-            'ip' => $this->ip ? ip2long($this->ip) : null,
+            static::tableName() . '.[[id]]' => $this->id,
+            static::tableName() . '.[[authId]]' => $this->authId,
+            static::tableName() . '.[[status]]' => $this->status,
+            static::tableName() . '.[[ip]]' => $this->ip ? ip2long($this->ip) : null,
         ]);
 
-        $query->andFilterWhere(['like', 'createdAt', $this->createdAt]);
+        $query->andFilterWhere(['like', static::tableName() . '.[[createdAt]]', $this->createdAt]);
 
         return $dataProvider;
     }
