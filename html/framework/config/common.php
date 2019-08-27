@@ -11,10 +11,7 @@ return \yii\helpers\ArrayHelper::merge([
     'timeZone' => 'UTC',
     'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => [
-        'log',
-        \krok\reverseProxy\Bootstrap::class,
-    ],
+    'bootstrap' => ['log'],
     'aliases' => [
         '@root' => dirname(dirname(__DIR__)),
         '@bower' => '@vendor/bower-asset',

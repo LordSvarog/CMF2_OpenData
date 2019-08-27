@@ -19,6 +19,9 @@ $config = [
         // Yii::$app->getResponse()->getHeaders()->add('Content-Security-Policy',
         //    'default-src \'none\'; script-src \'self\' \'unsafe-inline\' \'unsafe-eval\'; connect-src \'self\' speller.yandex.net; child-src \'self\'; img-src * data: blob:; style-src * \'unsafe-inline\'; font-src * data:;');
     },
+    'bootstrap' => [
+        \krok\reverseProxy\Bootstrap::class,
+    ],
     'aliases' => [
         '@themes' => '@vendor/yii2-developer/yii2-paper-dashboard/src',
     ],
