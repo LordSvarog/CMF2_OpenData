@@ -3,8 +3,8 @@
 $config = [
     'id' => 'web',
     'defaultRoute' => 'content/default/index',
-    'on beforeRequest' => [\krok\catchAll\CatchAllHandler::class, 'handle'],
     'bootstrap' => [
+        \krok\catchAll\Bootstrap::class,
         \krok\reverseProxy\Bootstrap::class,
     ],
     'container' => [

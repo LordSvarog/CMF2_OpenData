@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f9c85c702507a37b8bdd4a4b9754a50",
+    "content-hash": "2ff64923becb7b9c67ffc7c6d8d9fd23",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -2791,11 +2791,11 @@
         },
         {
             "name": "yii2-developer/yii2-catch-all",
-            "version": "1.2.0",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-catch-all.git",
-                "reference": "d1a85a47eff0a63bedc1bfe5b099510399d42231"
+                "reference": "9b5ab753d148b2afef24181fd823c59022b62d73"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -2824,7 +2824,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2019-02-16T05:58:00+00:00"
+            "time": "2019-08-28T03:37:54+00:00"
         },
         {
             "name": "yii2-developer/yii2-clock",
@@ -3520,11 +3520,11 @@
         },
         {
             "name": "yii2-developer/yii2-reverse-proxy",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-reverse-proxy.git",
-                "reference": "5076d4346de614190ab5cdaa77cd0911f463afe2"
+                "reference": "375e05bbe35b11aa15c74377b293e6a73c0449e0"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -3553,7 +3553,7 @@
                 "reverse",
                 "yii2"
             ],
-            "time": "2019-08-27T12:30:10+00:00"
+            "time": "2019-08-28T03:30:57+00:00"
         },
         {
             "name": "yii2-developer/yii2-robots",
