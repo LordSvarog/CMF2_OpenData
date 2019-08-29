@@ -36,8 +36,8 @@ develop:
 
         # Deploy
         - sshpass -p $SSH_PASSWORD dep deploy:multiplex
-        - sshpass -p $SSH_PASSWORD dep deploy:environment
-        # - sshpass -p $SSH_PASSWORD dep deploy:develop
+        # - sshpass -p $SSH_PASSWORD dep deploy:environment
+        - sshpass -p $SSH_PASSWORD dep deploy:develop
     variables:
         SSH_DIRECTORY: "$SSH_DIRECTORY"
         SSH_HOST: "$SSH_HOST"
