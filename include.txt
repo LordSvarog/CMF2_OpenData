@@ -1,4 +1,4 @@
-/docker/containers/application/usr/log/*/.gitignore
+/docker/containers/application/usr/log/supervisor/.gitignore
 /docker/containers/application/var/log/.gitignore
 /docker/containers/application/var/run/.gitignore
 /html/framework/runtime/.gitignore
