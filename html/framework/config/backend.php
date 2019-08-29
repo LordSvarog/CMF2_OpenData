@@ -152,7 +152,8 @@ $config = [
 
                 $action->destinations = [
                     new \BackupManager\Filesystems\Destination('filesystem',
-                        (new DateTime())->format('Y-m-d_H:i:s') . '.zip'),
+                        (new DateTime('now',
+                            new DateTimeZone(Yii::$app->getFormatter()->timeZone)))->format('Y-m-d_H:i:s') . '.zip'),
                 ];
 
                 return $action;
@@ -170,7 +171,8 @@ $config = [
 
                 $action->destinations = [
                     new \BackupManager\Filesystems\Destination('database',
-                        (new DateTime())->format('Y-m-d_H:i:s') . '.sql'),
+                        (new DateTime('now',
+                            new DateTimeZone(Yii::$app->getFormatter()->timeZone)))->format('Y-m-d_H:i:s') . '.sql'),
                 ];
 
                 return $action;
