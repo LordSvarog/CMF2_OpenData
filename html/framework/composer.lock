@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ff64923becb7b9c67ffc7c6d8d9fd23",
+    "content-hash": "547daebdd2f2972f5ae424d36cd8afae",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -3387,11 +3387,11 @@
         },
         {
             "name": "yii2-developer/yii2-paper-dashboard",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-paper-dashboard.git",
-                "reference": "8293c64a777473de6b2ee2bab3c6fb53b5ab16f1"
+                "reference": "c145b41528a8c01acf30769921416a757e6f34e4"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -3399,6 +3399,7 @@
                 "yii2-developer/yii2-clock": "~1.0.0",
                 "yii2-developer/yii2-configure": "~1.2.0",
                 "yii2-developer/yii2-filesystem": "~1.0.0",
+                "yii2-developer/yii2-glide": "~2.1.0",
                 "yii2-developer/yii2-language": "~1.1.0",
                 "yiisoft/yii2": "~2.0.12",
                 "yiisoft/yii2-bootstrap": "~2.0.0"
@@ -3432,7 +3433,7 @@
                 "paperdashboard",
                 "yii2"
             ],
-            "time": "2019-08-27T09:50:53+00:00"
+            "time": "2019-08-29T15:27:01+00:00"
         },
         {
             "name": "yii2-developer/yii2-password-eye",
