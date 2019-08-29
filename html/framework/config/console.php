@@ -36,6 +36,7 @@ $config = [
                         'default' => [
                             'label' => 'System',
                             'actions' => [
+                                'error',
                                 'index',
                                 'flush-cache',
                             ],

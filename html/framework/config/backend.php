@@ -13,6 +13,9 @@ $config = [
     'container' => [
         'definitions' => [
             \yii\filters\AccessControl::class => [
+                'ruleConfig' => [
+                    'class' => \krok\access\AccessRule::class,
+                ],
                 'except' => [
                     'gii/*',
                     'debug/*',
