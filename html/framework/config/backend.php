@@ -3,16 +3,8 @@
 $config = [
     'id' => 'web',
     'defaultRoute' => 'system',
-    'as accessControl' => [
-        'class' => \krok\system\components\backend\AccessControl::class,
-        'except' => [
-            'gii/*',
-            'debug/*',
-            'auth/default/login',
-            'auth/default/captcha',
-        ],
-    ],
     'bootstrap' => [
+        \krok\access\Bootstrap::class,
         \krok\reverseProxy\Bootstrap::class,
     ],
     'aliases' => [
@@ -20,6 +12,14 @@ $config = [
     ],
     'container' => [
         'definitions' => [
+            \yii\filters\AccessControl::class => [
+                'except' => [
+                    'gii/*',
+                    'debug/*',
+                    'auth/default/login',
+                    'auth/default/captcha',
+                ],
+            ],
             \yii\captcha\CaptchaAction::class => [
                 'transparent' => true,
             ],

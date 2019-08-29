@@ -2559,11 +2559,11 @@
         },
         {
             "name": "yii2-developer/yii2-access",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-access.git",
-                "reference": "b9e5f030de41c4dc1336e888951ca14753520eb0"
+                "reference": "6158f3735ef9532441a5b1fe305ebf4af8d22a26"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -2590,7 +2590,7 @@
                 "extension",
                 "yii2"
             ],
-            "time": "2019-02-27T12:30:25+00:00"
+            "time": "2019-08-29T10:47:46+00:00"
         },
         {
             "name": "yii2-developer/yii2-analytics",
@@ -3520,11 +3520,11 @@
         },
         {
             "name": "yii2-developer/yii2-reverse-proxy",
-            "version": "0.0.2",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-reverse-proxy.git",
-                "reference": "375e05bbe35b11aa15c74377b293e6a73c0449e0"
+                "reference": "3ca727d423d9d6788ec0a8c7a426e96f57273c7b"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -3553,7 +3553,7 @@
                 "reverse",
                 "yii2"
             ],
-            "time": "2019-08-28T03:30:57+00:00"
+            "time": "2019-08-28T09:48:44+00:00"
         },
         {
             "name": "yii2-developer/yii2-robots",
