@@ -54,7 +54,7 @@ return [
             'items' => [
                 [
                     'label' => 'Configure',
-                    'url' => ['/configure'],
+                    'url' => ['/configure/default'],
                 ],
                 [
                     'label' => 'Clear cache',
