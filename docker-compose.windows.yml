@@ -3,6 +3,11 @@ services:
     application:
         ports:
           - 80:80
+        environment:
+          XDEBUG_CONFIG: "remote_host=host.docker.internal remote_enable=1"
+    mysql:
+      ports:
+        - 3306:3306
     phpmyadmin:
         ports:
           - 8080:80

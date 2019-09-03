@@ -15,7 +15,7 @@ docker: docker-compose.yml
 	$(call do_exec, ${cmd})
 
 docker/up: docker-compose.yml
-	@docker-compose up --detach --remove-orphans
+	@docker-compose -f docker-compose.yml -f docker-compose.windows.yml up --detach --remove-orphans
 
 docker/down: docker-compose.yml
 	@docker-compose down

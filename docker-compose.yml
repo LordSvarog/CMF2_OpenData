@@ -9,15 +9,15 @@ services:
             APACHE_RUN_GROUP: ${APACHE_RUN_GROUP}
             CRON_FILE: /var/spool/cron/config/crontab
         volumes:
-            - ./html:/var/www/html
-            - ./docker/.composer:/var/www/.composer
-            - ./docker/containers/application/var/log/apache2:/var/log/apache2
-            - ./docker/containers/application/var/log/supervisor:/var/log/supervisor
-            - ./docker/containers/application/var/spool/cron/config:/var/spool/cron/config
-            - ./docker/containers/application/usr/log/supervisor:/usr/log/supervisor
-            - ./docker/containers/application/var/run:/var/run
-            - ./docker/containers/application/usr/local/etc/php/php.ini:/usr/local/etc/php/php.ini
-            - ./docker/containers/application/etc/supervisor/application.conf:/etc/supervisor/application.conf
+            - /Nsign/CMF2/prev/html:/var/www/html
+            - /Nsign/CMF2/prev/docker/.composer:/var/www/.composer
+            - /Nsign/CMF2/prev/docker/containers/application/var/log/apache2:/var/log/apache2
+            - /Nsign/CMF2/prev/docker/containers/application/var/log/supervisor:/var/log/supervisor
+            - /Nsign/CMF2/prev/docker/containers/application/var/spool/cron/config:/var/spool/cron/config
+            - /Nsign/CMF2/prev/docker/containers/application/usr/log/supervisor:/usr/log/supervisor
+            - /Nsign/CMF2/prev/docker/containers/application/var/run:/var/run
+            - /Nsign/CMF2/prev/docker/containers/application/usr/local/etc/php/php.ini:/usr/local/etc/php/php.ini
+            - /Nsign/CMF2/prev/docker/containers/application/etc/supervisor/application.conf:/etc/supervisor/application.conf
         expose:
             - 9000
         depends_on:
@@ -41,11 +41,13 @@ services:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         volumes:
-            - ./docker/containers/mysql/var/lib/mysql:/var/lib/mysql
-            - ./docker/containers/mysql/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+            - /Nsign/CMF2/prev/docker/containers/mysql/var/lib/mysql:/var/lib/mysql
+            - /Nsign/CMF2/prev/docker/containers/mysql/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
         networks:
             self:
                 ipv4_address: ${NETWORK_MYSQL}
+        command: 
+            --innodb_use_native_aio=0
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
         container_name: ${CONTAINER_NAME}-phpmyadmin
@@ -54,7 +56,7 @@ services:
         environment:
             PMA_HOST: mysql
         volumes:
-            - ./docker/containers/phpmyadmin/etc/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+            - /Nsign/CMF2/prev/docker/containers/phpmyadmin/etc/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
         depends_on:
             - mysql
         networks:
