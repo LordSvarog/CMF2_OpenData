@@ -35,6 +35,15 @@ $config = [
             'viewPath' => '@krok/catchAll/views/frontend',
             'controllerNamespace' => 'krok\catchAll\controllers\frontend',
         ],
+        'opendata' => [
+            'class' => app\modules\opendata\Module::class,
+            'viewPath' => '@app/modules/opendata/views/frontend',
+            'controllerNamespace' => 'app\modules\opendata\controllers\frontend',
+            'inn' => '7710914971',
+            'email' => [],
+            'exportFormats' => ['csv'],
+            'exportSchemaFormats' => ['csv'],
+        ],
     ],
     'components' => [
         'urlManager' => [

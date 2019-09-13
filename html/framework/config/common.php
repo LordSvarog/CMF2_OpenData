@@ -151,6 +151,13 @@ return \yii\helpers\ArrayHelper::merge([
             \krok\meta\serializers\SerializerInterface::class => \krok\meta\serializers\JsonSerializer::class,
             \krok\meta\MetaInterface::class => \krok\meta\Meta::class,
             \krok\sms\GateInterface::class => \krok\queue\sms\Gate::class,
+
+            \app\modules\opendata\import\roster\ImportListFactoryInterface::class => \app\modules\opendata\import\roster\ImportListFactory::class,
+            \app\modules\opendata\import\passport\ImportPassportFactoryInterface::class => \app\modules\opendata\import\passport\ImportPassportFactory::class,
+            \app\modules\opendata\import\data\ImportDataFactoryInterface::class => \app\modules\opendata\import\data\ImportDataFactory::class,
+            \app\modules\opendata\export\roster\ExportListFactoryInterface::class => \app\modules\opendata\export\roster\ExportListFactory::class,
+            \app\modules\opendata\export\passport\ExportPassportFactoryInterface::class => \app\modules\opendata\export\passport\ExportPassportFactory::class,
+            \app\modules\opendata\export\data\ExportDataFactoryInterface::class => \app\modules\opendata\export\data\ExportDataFactory::class,
         ],
     ],
     'modules' => [

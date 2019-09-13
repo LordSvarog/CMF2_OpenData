@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Opendata list",
+  "description": "Opendata list.",
+  "type": "object",
+  "properties": {
+    "standardversion": {
+      "description": "Link to opendata standard version, which corresponds to current opendata list.",
+      "type": "string"
+    },
+    "meta": {
+      "description": "Opendata metadata list.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "description": "Opendata metadata.",
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "description": "Opendata identification number.",
+            "type": "string"
+          },
+          "title": {
+            "description": "Opendata title.",
+            "type": "string"
+          },
+          "link": {
+            "description": "Opendata meta link.",
+            "type": "string"
+          },
+          "format": {
+            "description": "Opendata meta format.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "identifier",
+          "title",
+          "link",
+          "format"
+        ]
+      }
+    }
+  }
+}

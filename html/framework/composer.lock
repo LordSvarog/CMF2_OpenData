@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "547daebdd2f2972f5ae424d36cd8afae",
+    "content-hash": "06b841705016733c9b6799b1ba87919e",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -135,6 +135,24 @@
             "type": "bower-asset"
         },
         {
+            "name": "bower-asset/chartjs",
+            "version": "v2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chartjs/Chart.js.git",
+                "reference": "947d8a7ccfbfc76dd9d384ea75436fa4a7aeefb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/947d8a7ccfbfc76dd9d384ea75436fa4a7aeefb1",
+                "reference": "947d8a7ccfbfc76dd9d384ea75436fa4a7aeefb1"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
             "name": "bower-asset/fancybox",
             "version": "v3.2.5",
             "source": {
@@ -232,16 +250,16 @@
         },
         {
             "name": "bower-asset/select2",
-            "version": "4.0.9",
+            "version": "4.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/select2/select2.git",
-                "reference": "2148b6d3aef965404a33dbee0f9d8cb44fd494a4"
+                "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/select2/select2/zipball/2148b6d3aef965404a33dbee0f9d8cb44fd494a4",
-                "reference": "2148b6d3aef965404a33dbee0f9d8cb44fd494a4"
+                "url": "https://api.github.com/repos/select2/select2/zipball/c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
+                "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657"
             },
             "type": "bower-asset",
             "license": [
@@ -380,6 +398,88 @@
                 "stream_filter_register"
             ],
             "time": "2019-04-09T12:31:48+00:00"
+        },
+        {
+            "name": "contrib/yii2-charts",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.dev-vps.ru/yii2-extension/contrib/yii2-charts.git",
+                "reference": "981d6d3667d50aa051ccbfed80b078ca8aba70fc"
+            },
+            "require": {
+                "bower-asset/chartjs": "~2.6",
+                "dpodium/yii2-colorpicker": "~0.2",
+                "php": ">=7.1.0",
+                "unclead/yii2-multiple-input": "2.10",
+                "yii2-developer/yii2-extend": "~1.0.0",
+                "yii2-developer/yii2-system": "~1.0.0",
+                "yiisoft/yii2": "~2.0.12"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "zima\\charts\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "zima",
+                    "email": "marina.n.panteleeva@gmail.com"
+                }
+            ],
+            "description": "ChartJs widget for Yii2.",
+            "keywords": [
+                "charjs",
+                "extension",
+                "yii2"
+            ],
+            "time": "2019-02-21T11:46:43+00:00"
+        },
+        {
+            "name": "dpodium/yii2-colorpicker",
+            "version": "0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dpodium/yii2-colorpicker.git",
+                "reference": "db74941719736b21de3ac23684f14580aaa4d40e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dpodium/yii2-colorpicker/zipball/db74941719736b21de3ac23684f14580aaa4d40e",
+                "reference": "db74941719736b21de3ac23684f14580aaa4d40e",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dpodium\\colorpicker\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "June See",
+                    "email": "june.see@dpodium.com"
+                }
+            ],
+            "description": "A simple yii2 color picker widgent",
+            "keywords": [
+                "colorpicker",
+                "extension",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-12-28T11:09:51+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -2429,6 +2529,55 @@
             "time": "2018-05-16T04:27:27+00:00"
         },
         {
+            "name": "unclead/yii2-multiple-input",
+            "version": "2.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclead/yii2-multiple-input.git",
+                "reference": "dad7c6f6f2b97420d3996cf9e3611e0dd2120203"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclead/yii2-multiple-input/zipball/dad7c6f6f2b97420d3996cf9e3611e0dd2120203",
+                "reference": "dad7c6f6f2b97420d3996cf9e3611e0dd2120203",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.7.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "unclead\\multipleinput\\examples\\": "examples/",
+                    "unclead\\multipleinput\\": "src/",
+                    "unclead\\multipleinput\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Tupikov",
+                    "email": "unclead.nsk@gmail.com"
+                }
+            ],
+            "description": "Widget for handle multiple inputs for an attribute of Yii2 framework model",
+            "keywords": [
+                "yii2",
+                "yii2 array input",
+                "yii2 multiple field",
+                "yii2 multiple input",
+                "yii2 tabular input"
+            ],
+            "time": "2017-08-30T08:51:49+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v3.3.3",
             "source": {
@@ -3345,11 +3494,11 @@
         },
         {
             "name": "yii2-developer/yii2-meta",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.dev-vps.ru/yii2-extension/yii2-meta.git",
-                "reference": "25b5c190a2872af545cf85841de730ca59eda886"
+                "reference": "64be62e27299bf0656142e4656e081d45fe25d13"
             },
             "require": {
                 "php": ">=7.1.0",
@@ -3383,7 +3532,7 @@
                 "meta",
                 "yii2"
             ],
-            "time": "2019-08-02T11:46:20+00:00"
+            "time": "2019-08-31T07:21:30+00:00"
         },
         {
             "name": "yii2-developer/yii2-paper-dashboard",
@@ -3877,16 +4026,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.25",
+            "version": "2.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "c6148db8519b221d2485aa372267c063b2e198e9"
+                "reference": "5ca9036dd6eb75354fbd287cc57f79ca861fb7f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c6148db8519b221d2485aa372267c063b2e198e9",
-                "reference": "c6148db8519b221d2485aa372267c063b2e198e9",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5ca9036dd6eb75354fbd287cc57f79ca861fb7f1",
+                "reference": "5ca9036dd6eb75354fbd287cc57f79ca861fb7f1",
                 "shasum": ""
             },
             "require": {
@@ -3923,48 +4072,48 @@
             "authors": [
                 {
                     "name": "Qiang Xue",
-                    "role": "Founder and project lead",
                     "email": "qiang.xue@gmail.com",
-                    "homepage": "http://www.yiiframework.com/"
+                    "homepage": "http://www.yiiframework.com/",
+                    "role": "Founder and project lead"
                 },
                 {
                     "name": "Alexander Makarov",
-                    "role": "Core framework development",
                     "email": "sam@rmcreative.ru",
-                    "homepage": "http://rmcreative.ru/"
+                    "homepage": "http://rmcreative.ru/",
+                    "role": "Core framework development"
                 },
                 {
                     "name": "Maurizio Domba",
-                    "role": "Core framework development",
-                    "homepage": "http://mdomba.info/"
+                    "homepage": "http://mdomba.info/",
+                    "role": "Core framework development"
                 },
                 {
                     "name": "Carsten Brandt",
-                    "role": "Core framework development",
                     "email": "mail@cebe.cc",
-                    "homepage": "http://cebe.cc/"
+                    "homepage": "http://cebe.cc/",
+                    "role": "Core framework development"
                 },
                 {
                     "name": "Timur Ruziev",
-                    "role": "Core framework development",
                     "email": "resurtm@gmail.com",
-                    "homepage": "http://resurtm.com/"
+                    "homepage": "http://resurtm.com/",
+                    "role": "Core framework development"
                 },
                 {
                     "name": "Paul Klimov",
-                    "role": "Core framework development",
-                    "email": "klimov.paul@gmail.com"
+                    "email": "klimov.paul@gmail.com",
+                    "role": "Core framework development"
                 },
                 {
                     "name": "Dmitry Naumenko",
-                    "role": "Core framework development",
-                    "email": "d.naumenko.a@gmail.com"
+                    "email": "d.naumenko.a@gmail.com",
+                    "role": "Core framework development"
                 },
                 {
                     "name": "Boudewijn Vahrmeijer",
-                    "role": "Core framework development",
                     "email": "info@dynasource.eu",
-                    "homepage": "http://dynasource.eu"
+                    "homepage": "http://dynasource.eu",
+                    "role": "Core framework development"
                 }
             ],
             "description": "Yii PHP Framework Version 2",
@@ -3973,7 +4122,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-08-13T20:04:44+00:00"
+            "time": "2019-09-03T21:38:33+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",

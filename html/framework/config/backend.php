@@ -272,6 +272,12 @@ $config = [
             'viewPath' => '@krok/configure/views/backend',
             'controllerNamespace' => 'krok\configure\controllers\backend',
         ],
+        'opendata' => [
+            'class' => app\modules\opendata\Module::class,
+            'viewPath' => '@app/modules/opendata/views/backend',
+            'controllerNamespace' => '\app\modules\opendata\controllers\backend',
+            'inn' => '7710914971',
+        ],
     ],
     'components' => [
         'view' => [

@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Opendata metadata",
+  "description": "Opendata metadata.",
+  "type": "object",
+  "properties": {
+    "standardversion": {
+      "description": "Link to opendata standard version, which corresponds to current opendata meta.",
+      "type": "string"
+    },
+    "identifier": {
+      "description": "Opendata identification number.",
+      "type": "string"
+    },
+    "title": {
+      "description": "Opendata title.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Opendata description.",
+      "type": "string"
+    },
+    "creator": {
+      "description": "Opendata owner.",
+      "type": "string"
+    },
+    "created": {
+      "description": "Date  of  first  opendata  publication  in  ISO  8601 format.",
+      "type": "string"
+    },
+    "modified": {
+      "description": "Date of last opendata changing in ISO 8601 format.",
+      "type": "string"
+    },
+    "subject": {
+      "description": "Keywords of the opendata content.",
+      "type": "string"
+    },
+    "format": {
+      "description": "Opendata format.",
+      "type": "string"
+    },
+    "data": {
+      "description": "Opendata versions.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "description": "Opendata.",
+        "type": "object",
+        "properties": {
+          "source": {
+            "description": "Link to opendata file.",
+            "type": "string"
+          },
+          "created": {
+            "description": "Date  of  opendata  creation  in  ISO  8601 format.",
+            "type": "string"
+          },
+          "provenance": {
+            "description": "Description  of  changes  compared to  the previous opendata version.",
+            "type": "string"
+          },
+          "valid": {
+            "description": "Date  on  which  opendata  will  be  actual  in  ISO 8601 format.",
+            "type": "string"
+          },
+          "structure": {
+            "description": "Creation   date   of   corresponding   opendata structure in ISO 8601 format.",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "structure": {
+      "description": "Opendata structure versions.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "description": "Opendata structure.",
+        "type": "object",
+        "properties": {
+          "source": {
+            "description": "Link to opendata structure file.",
+            "type": "string"
+          },
+          "created": {
+            "description": "Date  of  opendata  structure  creation  in  ISO 8601 format.",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "publisher": {
+      "description": "Opendata publisher.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Opendata publisher name.",
+          "type": "string"
+        },
+        "phone": {
+          "description": "Opendata publisher phone number.",
+          "type": "string"
+        },
+        "mbox": {
+          "description": "Opendata publisher e-mail.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "phone",
+        "mbox"
+      ]
+    }
+  },
+  "required": [
+    "identifier",
+    "title",
+    "description",
+    "creator",
+    "created",
+    "modified",
+    "subject",
+    "format",
+    "data",
+    "structure",
+    "publisher"
+  ]
+}

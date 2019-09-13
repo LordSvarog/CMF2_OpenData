@@ -1,0 +1,83 @@
+.map-box .wrapper .digit-box {
+    position: absolute;
+    display: none;
+    text-align: left;
+    background: #ffffff;
+    font-weight: normal;
+    width: 650px;
+    margin-top: -100px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 30px;
+    opacity: 1;
+    box-shadow: 7px 7px 20px 2px rgba(0,0,0,.2);
+    z-index: 100;
+    pointer-events: none;
+}
+
+.map-box .wrapper .digit-box th, .map-box .wrapper .digit-box td { padding: 9px 10px; }
+
+.point table {
+    margin: 0;
+}
+
+.map-box .point h2 {
+    color: #0575bc;
+    font-size: 20px;
+    text-transform: none;
+    line-height: 20px;
+    padding: 0;
+    margin: 0 0 5px 0;
+    border-bottom: 0;
+    padding-bottom: 25px;
+    padding-left: 0px;
+    position: relative;
+}
+
+.digit-box .point h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.point th {
+    border: 1px solid #e6e6e6;
+    /*padding: 16px;*/
+    /*white-space: nowrap;*/
+    font-weight: normal;
+    text-align: left;
+}
+
+.point tr th:first-child {
+    text-align: left;
+}
+
+.point .value {
+    color: #0575bc;
+}
+.point .value .title {
+    font-weight: 300;
+    color: #333333;
+}
+
+.point td {
+    padding: 0 0 5px 10px;
+    vertical-align: top;
+    border: 1px solid #e6e6e6 !important;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+}
+
+.point table {
+    margin: 0;
+    width: 100%;
+}
+
+/*.rate-title {*/
+    /*text-transform: uppercase;*/
+/*}*/
+
+h3.rate-title {
+    font-weight: bold;
+}

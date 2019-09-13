@@ -18,6 +18,7 @@ $config = [
                 '@krok/content/migrations',
                 '@krok/configure/migrations',
                 '@krok/meta/migrations',
+                '@app/modules/opendata/migrations',
             ],
         ],
         'access' => [
@@ -141,10 +142,40 @@ $config = [
                         ],
                     ],
                 ],
+                [
+                    'label' => 'Open Data',
+                    'name' => 'opendata',
+                    'controllers' => [
+                        'passport' => [
+                            'label' => 'Passport',
+                            'actions' => [],
+                        ],
+                        'set' => [
+                            'label' => 'Set',
+                            'actions' => [
+                                'create',
+                                'update',
+                                'delete',
+                                'import',
+                                'data',
+                                'delete-data',
+                                'chart',
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
     ],
-    'modules' => [],
+    'modules' => [
+        'opendata' => [
+            'class' => app\modules\opendata\Module::class,
+            'controllerNamespace' => 'app\modules\opendata\controllers\console',
+            'inn' => '7710914971',
+            // Список доступных паспортов
+            'importUrl' => 'http://www.rosim.ru/opendata/list.csv',
+        ],
+    ],
     'components' => [
         'urlManager' => [
             'class' => \yii\di\ServiceLocator::class,

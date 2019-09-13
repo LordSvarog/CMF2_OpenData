@@ -32,6 +32,15 @@ return [
                 ],
             ],
         ],
+        [
+            'label' => 'Open data',
+            'items' => [
+                [
+                    'label' => 'Passport',
+                    'url' => ['/opendata/passport'],
+                ],
+            ],
+        ],
     ],
     'dropdown' => [
         [
